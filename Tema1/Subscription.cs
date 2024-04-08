@@ -19,5 +19,15 @@ namespace Tema1
         {
             SubscriptionFields = subscriptionFields;
         }
+
+        //Tries to add the subscription fields of another subscription
+        //Returns true if the other subscription does not have a subscription field with the same Attribute, false otherwise
+        public static Subscription CombineSubscriptions(Subscription source, Subscription partner)
+        {
+            var combination = new Subscription(source.SubscriptionFields);
+            combination.SubscriptionFields.AddRange(partner.SubscriptionFields);
+            
+            return combination;
+        }
     }
 }
