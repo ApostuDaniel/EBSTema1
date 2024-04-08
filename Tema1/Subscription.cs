@@ -29,5 +29,20 @@ namespace Tema1
             
             return combination;
         }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new();
+            sb.Append('{');
+            foreach (var subField in SubscriptionFields)
+            {
+                sb.Append(subField.ToString());
+                sb.Append(", ");
+            }
+            sb.Remove(sb.Length - 2, 2);
+            sb.Append('}');
+
+            return sb.ToString();
+        }
     }
 }

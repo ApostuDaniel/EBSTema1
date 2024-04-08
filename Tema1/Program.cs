@@ -2,9 +2,9 @@
 using System.Diagnostics;
 using Tema1;
 
-int numPublications = 1000000;
-int numSubscriptions = 1000000;
-int threadCount = 2;
+int numPublications = 100;
+int numSubscriptions = 100;
+int threadCount = 4;
 
 Stopwatch stopwatch = new();
 
@@ -27,7 +27,10 @@ stopwatch.Stop();
 Console.WriteLine($"{subscriptions.Count} subscriptions generated in {stopwatch.ElapsedMilliseconds} ms with {threadCount} threads");
 
 Console.WriteLine("--------Publications---------------");
-//publications.ToList().ForEach(x => Console.WriteLine(x));
+publications.ToList().ForEach(x => Console.WriteLine(x));
+
+Console.WriteLine("\n\n--------Subscriptions---------------");
+subscriptions.ToList().ForEach(x => Console.WriteLine(x));
 
 
 
