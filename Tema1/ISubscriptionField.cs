@@ -8,5 +8,7 @@ namespace Tema1
 {
     public interface ISubscriptionField
     {
+        public string Attribute { get; set; }
+        public Operator Operator { get; set; }
     }
 }

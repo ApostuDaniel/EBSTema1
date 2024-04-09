@@ -26,6 +26,8 @@ stopwatch.Stop();
 
 Console.WriteLine($"{subscriptions.Count} subscriptions generated in {stopwatch.ElapsedMilliseconds} ms with {threadCount} threads");
 
+PrintSubcriptionsStatistics(subscriptions.ToList(), subWeights);
+
 Console.WriteLine("--------Publications---------------");
 publications.ToList().ForEach(x => Console.WriteLine(x));
 
@@ -33,7 +35,31 @@ Console.WriteLine("\n\n--------Subscriptions---------------");
 subscriptions.ToList().ForEach(x => Console.WriteLine(x));
 
 
+static void PrintSubcriptionsStatistics(List<Subscription> subs, List<SubscriptionWeight> subWeights)
+{
+    var countEq = new int[subWeights.Count];
+    var countTotal = new int[subWeights.Count];
+    foreach (var sub in subs)
+    {
+        foreach(var subField in sub.SubscriptionFields)
+        {
+            for (int i = 0; i < subWeights.Count; i++)
+            {
+                if(subField.Attribute == subWeights[i].Attribute.ToString())
+                {
+                    countTotal[i]++;
+                    if (subField.Operator == Operator.EQ) countEq[i]++;
+                }
+            }
+        }
+    }
 
+    for (int i = 0; i < subWeights.Count; i++)
+    {
+        Console.WriteLine($"For field {subWeights[i].Attribute} generated {countTotal[i]} subscriptions, proportion {(float)countTotal[i] / subs.Count}" +
+            $" with {countEq[i]} of them, a proportion of {(float)countEq[i] / countTotal[i]} containing the == operator");
+    }
+}
 static List<Publication> GenerateRandomPublications(int numPublications, int numThreads)
 {
     ConcurrentBag<Publication> publications = new();
