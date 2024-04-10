@@ -10,7 +10,7 @@ Cu paralelizare:
 1000000 publications generated in 259 ms with 4 threads  
 1000000 subscriptions generated in 2620 ms with 4 threads  
   
-1000000 publications generated in 279 ms with 8 threads
+1000000 publications generated in 279 ms with 8 threads  
 1000000 subscriptions generated in 2105 ms with 8 threads  
   
 1000000 publications generated in 597 ms with 16 threads  
